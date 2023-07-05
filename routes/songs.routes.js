@@ -8,7 +8,10 @@ router.get("/", (req, res) => {
 
 router.put("/vote/:songId", (req,res)=>{
   const songId = req.params.songId;
+  console.log(songId)
   const response = songsData.find((eachSong) => eachSong.id===songId);
+  console.log(response)
+//   const response = songsData.find(songId);
   if(response){
     eachSong.votos += 1
     res.json({message: "Voto Agregado"})
