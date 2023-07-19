@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
-const cron = require("node-cron")
+const cron = require("node-cron");
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
 const userSchema = new Schema(
   {
     email: {
@@ -19,9 +18,18 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Username is required."],
     },
-    votosRestantes:{
-      type:Number,
-      default:3
+    votosRestantes: {
+      type: Number,
+      default: 3,
+    },
+    ultimoVotoFecha: {
+      type: Date,
+      default: null,
+    },
+    votosCanciones:{
+      type:[Schema.Types.ObjectId],
+      ref:"Song",
+      default: []
     }
   },
   {
@@ -30,21 +38,25 @@ const userSchema = new Schema(
   }
 );
 
-// Reiniciar los votos cada 24 horas s(opt) min hour day month day/week
-cron.schedule("0 0 * * *", async ()=>{
-try {
-  const users = await User.find()
-  for (const user of users){
-    user.votosRestantes = 3
-    await User.save()
-  }
-  console.log("votos reiniciados")
-} catch (error) {
-  console.log(error)
-  
-}
-})
+// Reiniciar los votos cada 24 horas (a las 00:00 AM)
+cron.schedule("0 0 * * *", async () => {
+  try {
+    const users = await User.find();
 
+    for (const user of users) {
+      // Reiniciamos los votos, la fecha y el array
+        user.votosRestantes = 3;
+        user.ultimoVotoFecha = null; 
+        user.votosCanciones = []
+        await user.save();
+      
+    }
+
+    console.log("Reinicio completado");
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 const User = model("User", userSchema);
 

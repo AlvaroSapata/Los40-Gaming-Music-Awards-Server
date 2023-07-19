@@ -18,7 +18,7 @@ const songSchema = new Schema(
     },
     link: {
       type: String,
-      unique: true,
+      
     },
   },
   {

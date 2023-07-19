@@ -7,10 +7,7 @@ const mongoose = require('mongoose');
 mongoose.set('bufferTimeoutMS', 30000);
 
 // Conectar a la base de datos
-mongoose.connect('mongodb://localhost:27017/Los40-Gaming-Music-Awards', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect('mongodb://127.0.0.1:27017/Los40-Gaming-Music-Awards')
   .then(() => {
     console.log('Conexión exitosa a la base de datos');
     // Crear las canciones
@@ -23,16 +20,16 @@ mongoose.connect('mongodb://localhost:27017/Los40-Gaming-Music-Awards', {
 // Lógica para crear las canciones
 async function createSongs() {
   try {
-    // Insertar cada canción en la base de datos
+    // Insertar o actualizar cada canción en la base de datos
     for (const songData of songsData) {
-      const song = new Song(songData);
-      await song.save();
-      console.log(`Canción creada: ${song.titulo}`);
+      const { titulo } = songData;
+      await Song.findOneAndUpdate({ titulo }, songData, { upsert: true });
+      console.log(`Canción creada o actualizada: ${titulo}`);
     }
 
-    console.log('Canciones creadas exitosamente');
+    console.log('Canciones creadas o actualizadas exitosamente');
   } catch (error) {
-    console.error('Error al crear las canciones:', error);
+    console.error('Error al crear o actualizar las canciones:', error);
   } finally {
     // Desconectar de la base de datos
     mongoose.disconnect();

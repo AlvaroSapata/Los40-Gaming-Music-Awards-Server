@@ -1,6 +1,5 @@
 [
   {
-    "id": 0,
     "titulo": "Chasing Stars",
     "artista": "Alesso, Marshmello, James Bay",
     "juego": "F1 2022",
@@ -8,7 +7,6 @@
     "link": "https://www.youtube.com/embed/nZP1ss1yhGE"
   },
   {
-    "id": 1,
     "titulo": "Broken Belief",
     "artista": "Bob Moses",
     "juego": "F1 2022",
@@ -16,14 +14,12 @@
     "link": "https://www.youtube.com/embed/tMrXyjGM-NY"
   },
   {
-    "id": 2,
     "titulo": "Shady Intentions",
     "artista": "NGHTMRE, Zeds Dead, Tori Levett",
     "juego": "F1 2022",
     "votos": 0,
     "link": "https://www.youtube.com/embed/kZ2hMnlwJMg"
   },{
-    "id": 3,
     "titulo": "BRUX",
     "artista": "Take Feat Kimbra",
     "juego": "F1 2022",
@@ -31,7 +27,6 @@
     "link": "https://www.youtube.com/embed/5q8vF_Jnbu0"
   },
   {
-    "id": 4,
     "titulo": "Oh Nah Yeah",
     "artista": "CHAII, Party Favor",
     "juego": "F1 2022",
@@ -39,7 +34,6 @@
     "link": "https://www.youtube.com/embed/aWudT0iyIgE"
   },
   {
-    "id": 5,
     "titulo": "Take Control",
     "artista": "Chapter & Verse, Yasmin Jane",
     "juego": "F1 2022",
@@ -47,7 +41,6 @@
     "link": "https://www.youtube.com/embed/4VfSJATiYfU"
   },
   {
-    "id":6 ,
     "titulo": "Used to know me",
     "artista": "Charli XCX",
     "juego": "F1 2022",
@@ -55,7 +48,6 @@
     "link": "https://www.youtube.com/embed/dhYM5zMvFQk"
   },
   {
-    "id":7 ,
     "titulo": "Good Ones",
     "artista": "Charli XCX, THAT KIND",
     "juego": "F1 2022",
@@ -63,7 +55,6 @@
     "link": "https://www.youtube.com/embed/kjAuUXdSFaM"
   },
   {
-    "id": 8,
     "titulo": "Hold Your Ground",
     "artista": "Chase & Status, Ethan Holt",
     "juego": "Payback",
@@ -71,7 +62,6 @@
     "link": "https://www.youtube.com/embed/0BUCaaCSXHI"
   },
   {
-    "id": 9,
     "titulo": "Payback",
     "artista": "Cheat Codes, Icona Pop",
     "juego": "F1 2022",
@@ -79,176 +69,154 @@
     "link": "https://www.youtube.com/embed/0eKcqWcsS78"
   },
   {
-    "id": 10,
-    "titulo": "A Drug From God",
+     "titulo": "A Drug From God",
     "artista": "Chris Lake, NPC",
     "juego": "F1 2022",
     "votos": 0,
     "link": "https://www.youtube.com/embed/nsmvBR37xps"
   },
   {
-    "id": 11,
-    "titulo": "No Stress",
+     "titulo": "No Stress",
     "artista": "CMD/CTRL",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 12,
-    "titulo": "On A Mountain",
+     "titulo": "On A Mountain",
     "artista": "Danny L Harle, DJ Danny, Flume",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 13,
-    "titulo": "Channel 43",
+     "titulo": "Channel 43",
     "artista": "deadmau5, Wolfgang Gartner",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 14,
-    "titulo": "Don't Be Afraid",
+     "titulo": "Don't Be Afraid",
     "artista": "Diplo, Damian Lazarus, Jungle",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 15,
-    "titulo": "Let You Go",
+     "titulo": "Let You Go",
     "artista": "Diplo, TSHA, Kareen Lomax",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 16,
-    "titulo": "Scripture",
+     "titulo": "Scripture",
     "artista": "Eartheater",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 17,
-    "titulo": "Somewhere",
+     "titulo": "Somewhere",
     "artista": "Grafix, Reiki Ruawai",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 18,
-    "titulo": "Ice Cold",
+     "titulo": "Ice Cold",
     "artista": "Habstrakt, Karra",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 19,
-    "titulo": "Jericho",
+     "titulo": "Jericho",
     "artista": "Jacknife, The Bloody Beetroots",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 20,
-    "titulo": "Forever",
+     "titulo": "Forever",
     "artista": "Joe Turner",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id":21 ,
-    "titulo": "Renegade",
+     "titulo": "Renegade",
     "artista": "Kavinsky, Cautious Clay",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id":22 ,
-    "titulo": "What You've Done To Me",
+     "titulo": "What You've Done To Me",
     "artista": "KREAM, Millean, Bemendé",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id":23 ,
-    "titulo": "Carry Us",
+     "titulo": "Carry Us",
     "artista": "LP Giobbi, Kaleena Zanders ",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id":24 ,
-    "titulo": "Breathing",
+     "titulo": "Breathing",
     "artista": "Mall Grab",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 25,
-    "titulo": "Tell It To My Heart",
+     "titulo": "Tell It To My Heart",
     "artista": "MEDUZA, Hozier",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 26,
-    "titulo": "Move Your Body",
+     "titulo": "Move Your Body",
     "artista": "Öwnboss, Sevek",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 27,
-    "titulo": "Too Much",
+     "titulo": "Too Much",
     "artista": "Party Favor",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 28,
-    "titulo": "Fallaway",
+     "titulo": "Fallaway",
     "artista": "RL Grime, Baauer",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 29,
-    "titulo": "Blue Racecar",
+     "titulo": "Blue Racecar",
     "artista": "Sassy 009",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 30,
-    "titulo": "Lifestyle",
+     "titulo": "Lifestyle",
     "artista": "SONIKKU",
     "juego": "F1 2022",
     "votos": 0,
     "link": ""
   },
   {
-    "id": 31,
-    "titulo": "Hold Up",
+     "titulo": "Hold Up",
     "artista": "Whipped Cream, Moore Kismet, Big Freedia, UNNIQU3",
     "juego": "F1 2022",
     "votos": 0,
