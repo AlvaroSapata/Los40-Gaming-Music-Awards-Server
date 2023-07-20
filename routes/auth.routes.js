@@ -22,14 +22,14 @@ router.post("/signup", (req, res, next) => {
 
   // Check if email or password or name are provided as empty strings
   if (email === "" || password === "" || username === "") {
-    res.status(400).json({ message: "Provide email, password and name" });
+    res.status(400).json({ message: "Debes rellenar los campos de email, contraseña y nombre de usuario" });
     return;
   }
 
   // This regular expression check that the email is of a valid format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   if (!emailRegex.test(email)) {
-    res.status(400).json({ message: "Provide a valid email address." });
+    res.status(400).json({ message: "Indica un email valido" });
     return;
   }
 
@@ -38,7 +38,7 @@ router.post("/signup", (req, res, next) => {
   if (!passwordRegex.test(password)) {
     res.status(400).json({
       message:
-        "Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.",
+        "La contraseña debe contener al menos 6 caracteres, entre los cuales, un número, una minúscula y una mayúscula",
     });
     return;
   }
@@ -48,7 +48,7 @@ router.post("/signup", (req, res, next) => {
     .then((foundUser) => {
       // If the user with the same email already exists, send an error response
       if (foundUser) {
-        res.status(400).json({ message: "User already exists." });
+        res.status(400).json({ message: "El usuario ya esta registrado" });
         return;
       }
 
@@ -80,7 +80,7 @@ router.post("/login", (req, res, next) => {
 
   // Check if email or password are provided as empty string
   if (email === "" || password === "") {
-    res.status(400).json({ message: "Provide email and password." });
+    res.status(400).json({ message: "Indica un email y contraseña" });
     return;
   }
 
@@ -89,7 +89,7 @@ router.post("/login", (req, res, next) => {
     .then((foundUser) => {
       if (!foundUser) {
         // If the user is not found, send an error response
-        res.status(401).json({ message: "User not found." });
+        res.status(401).json({ message: "Usuario no encontrado" });
         return;
       }
 
@@ -112,7 +112,7 @@ router.post("/login", (req, res, next) => {
         // Send the token as the response
         res.status(200).json({ authToken: authToken });
       } else {
-        res.status(401).json({ message: "Unable to authenticate the user" });
+        res.status(401).json({ message: "No se ha podido identificar al usuario" });
       }
     })
     .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
