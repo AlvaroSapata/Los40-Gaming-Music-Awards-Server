@@ -1,7 +1,6 @@
-const Song = require('../models/Song.model')
+const Song = require('../models/Song.model');
 const songsData = require('../data/songs.json');
 const mongoose = require('mongoose');
-
 
 // Configurar el tiempo de espera a 30 segundos (30000 ms)
 mongoose.set('bufferTimeoutMS', 30000);
@@ -23,8 +22,15 @@ async function createSongs() {
     // Insertar o actualizar cada canción en la base de datos
     for (const songData of songsData) {
       const { titulo } = songData;
-      await Song.findOneAndUpdate({ titulo }, songData, { upsert: true });
-      console.log(`Canción creada o actualizada: ${titulo}`);
+      const existingSong = await Song.findOne({ titulo });
+
+      if (!existingSong) {
+        // La canción no existe, así que la creamos
+        await Song.create(songData);
+        console.log(`Canción creada: ${titulo}`);
+      } else {
+        console.log(`Canción ya existe, no se creará: ${titulo}`);
+      }
     }
 
     console.log('Canciones creadas o actualizadas exitosamente');
