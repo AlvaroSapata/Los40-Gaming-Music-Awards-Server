@@ -21,7 +21,7 @@ async function createSongs() {
   try {
     // Insertar o actualizar cada canción en la base de datos
     for (const songData of songsData) {
-      const { titulo } = songData;
+      const { titulo, artista, juego, link } = songData;
       const existingSong = await Song.findOne({ titulo });
 
       if (!existingSong) {
@@ -29,7 +29,13 @@ async function createSongs() {
         await Song.create(songData);
         console.log(`Canción creada: ${titulo}`);
       } else {
-        console.log(`Canción ya existe, no se creará: ${titulo}`);
+        // La canción ya existe, actualizamos las propiedades sin tocar "votos"
+        await Song.findOneAndUpdate(
+          { titulo },
+          { artista, juego, link },
+          { new: true }
+        );
+        console.log(`Canción actualizada: ${titulo}`);
       }
     }
 
