@@ -191,7 +191,7 @@ router.get("/most-voted-song-of-week", async (req, res) => {
     if (songsOfWeek.length === 0) {
       // No song found for the current week with votes
       // Get the topmost song with the most votes (most voted song overall)
-      const mostVotedSongOverall = await Songs.findOne().sort({ votos: -1 });
+      const mostVotedSongOverall = await Songs.find().sort({ votos: -1 });
       if (!mostVotedSongOverall) {
         return res
           .status(404)
