@@ -129,7 +129,7 @@ router.get("/most-voted-song-of-day", async (req, res) => {
       // Calcula el tamaño de la propiedad y la guarda en el contador
       {
         $addFields: {
-          votosHoyCount: { $size: "$votosHoy" }, 
+          votosHoyCount: { $size: "$votosHoy" },
         },
       },
       // Ordena en funcion del array de votosHoy y en caso de empate, por votos generales
@@ -137,12 +137,15 @@ router.get("/most-voted-song-of-day", async (req, res) => {
         $sort: { votosHoyCount: -1, votos: -1 }, // Sort by votosHoyCount and votos in descending order
       },
     ]);
-    console.log(songsOfDay);
     if (songsOfDay.length === 0) {
-      // No song found for the current day with votes
-      res
-        .status(404)
-        .json({ error: "No hay canciones con votos en el día de hoy." });
+      // No song found for the current day with votes      // Get the topmost song with the most votes (most voted song overall)
+      const mostVotedSongOverall = await Songs.find().sort({ votos: -1 });
+      if (!mostVotedSongOverall) {
+        return res
+          .status(404)
+          .json({ error: "No hay canciones con votos en el dia actual." });
+      }
+      res.json(mostVotedSongOverall[0]);
     } else {
       // Get the topmost song with the most votes (most voted song of the day)
       res.json(songsOfDay[0]);
@@ -152,5 +155,58 @@ router.get("/most-voted-song-of-day", async (req, res) => {
     res.status(500).json({ error: "Error del servidor." });
   }
 });
+
+router.get("/most-voted-song-of-week", async (req, res) => {
+  try {
+    // Calculate the start and end timestamps for the current week
+    const now = new Date();
+    const startOfWeek = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() - now.getDay() // Subtract the current day of the week to get the start of the week (Sunday)
+    );
+    const endOfWeek = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() - now.getDay() + 7 // Add 7 days to get the end of the week (Saturday)
+    );
+
+    // Use an aggregation pipeline to get all songs within the current week and sort them by votosSemana count and votos in descending order
+    const songsOfWeek = await Songs.aggregate([
+      {
+        $match: {
+          "votosSemana.date": { $gte: startOfWeek, $lt: endOfWeek },
+        },
+      },
+      {
+        $addFields: {
+          votosSemanaCount: { $size: "$votosSemana" },
+        },
+      },
+      {
+        $sort: { votosSemanaCount: -1, votos: -1 },
+      },
+    ]);
+
+    if (songsOfWeek.length === 0) {
+      // No song found for the current week with votes
+      // Get the topmost song with the most votes (most voted song overall)
+      const mostVotedSongOverall = await Songs.findOne().sort({ votos: -1 });
+      if (!mostVotedSongOverall) {
+        return res
+          .status(404)
+          .json({ error: "No hay canciones con votos en la semana actual." });
+      }
+      res.json(mostVotedSongOverall);
+    } else {
+      // Get the topmost song with the most votosSemanaCount and votos (most voted song of the week)
+      res.json(songsOfWeek[0]);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error del servidor." });
+  }
+});
+
 
 module.exports = router;

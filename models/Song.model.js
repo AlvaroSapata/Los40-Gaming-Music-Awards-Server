@@ -32,6 +32,19 @@ const songSchema = new Schema(
         },
       },
     ],
+    votosSemana: [
+      {
+        userId: {
+          type: Schema.Types.ObjectId,
+          ref: "User",
+        },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
+    
   },
   {
     timestamps: true,
@@ -49,7 +62,16 @@ cron.schedule("0 0 * * *", async () => {
   }
 });
 
-
+// Esta función se ejecutará todos los días a la medianoche (00:00)
+cron.schedule("0 0 * * 1", async () => {
+  try {
+    // Reiniciar los votosHoy de todas las canciones
+    await Song.updateMany({}, { $set: { votosSemana: [] } });
+    console.log("Se han reiniciado los votosSemana de todas las canciones.");
+  } catch (error) {
+    console.error("Error al reiniciar los votosSemana:", error);
+  }
+});
 
 const Song = model("Song", songSchema);
 
