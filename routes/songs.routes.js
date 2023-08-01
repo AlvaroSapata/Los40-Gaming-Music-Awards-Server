@@ -197,7 +197,7 @@ router.get("/most-voted-song-of-week", async (req, res) => {
           .status(404)
           .json({ error: "No hay canciones con votos en la semana actual." });
       }
-      res.json(mostVotedSongOverall);
+      res.json(mostVotedSongOverall[0]);
     } else {
       // Get the topmost song with the most votosSemanaCount and votos (most voted song of the week)
       res.json(songsOfWeek[0]);
