@@ -62,6 +62,13 @@ router.put("/vote/:songId", isAuthenticated, async (req, res, next) => {
       date: new Date(),
     });
 
+    // Agregar la fecha de voto al array votosSemana
+    foundSong.votosSemana.push({
+      userId: userId.toString(),
+      date: new Date(),
+    });
+
+
     // Actualizar los votos de la canción y guardarla en la base de datos
     foundSong.votos += 1;
     await foundSong.save();
