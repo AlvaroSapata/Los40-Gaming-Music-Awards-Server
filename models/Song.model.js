@@ -44,7 +44,10 @@ const songSchema = new Schema(
         },
       },
     ],
-    
+    cancionDelDia: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
@@ -55,7 +58,7 @@ const songSchema = new Schema(
 cron.schedule("0 0 * * *", async () => {
   try {
     // Reiniciar los votosHoy de todas las canciones
-    await Song.updateMany({}, { $set: { votosHoy: [] } });
+    await Song.updateMany({}, { $set: { votosHoy: [], cancionDelDia: false } });
     console.log("Se han reiniciado los votosHoy de todas las canciones.");
   } catch (error) {
     console.error("Error al reiniciar los votosHoy:", error);

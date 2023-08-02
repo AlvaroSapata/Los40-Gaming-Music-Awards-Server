@@ -68,7 +68,6 @@ router.put("/vote/:songId", isAuthenticated, async (req, res, next) => {
       date: new Date(),
     });
 
-
     // Actualizar los votos de la canción y guardarla en la base de datos
     foundSong.votos += 1;
     await foundSong.save();
@@ -106,6 +105,32 @@ router.put("/:userId", async (req, res) => {
     res.status(500).json({
       message: "Error al actualizar los votos restantes del usuario.",
     });
+  }
+});
+
+// api/songs/getRandomSong => Ruta para obtener la canción del día
+router.get("/getRandomSong", async (req, res) => {
+  try {
+    const songOfTheDay = await Songs.findOne({ cancionDelDia: true });
+
+    if (songOfTheDay) {
+      res.status(200).json(songOfTheDay);
+    } else {
+      const allSongs = await Songs.find({});
+      const randomIndex = Math.floor(Math.random() * allSongs.length);
+      const randomChosenSong = allSongs[randomIndex];
+
+      // Marca la canción seleccionada como la canción del día
+      randomChosenSong.cancionDelDia = true;
+
+      // Guarda la nueva canción en la base de datos
+      await randomChosenSong.save();
+
+      res.status(200).json(randomChosenSong);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error al obtener la canción del día" });
   }
 });
 
@@ -163,6 +188,7 @@ router.get("/most-voted-song-of-day", async (req, res) => {
   }
 });
 
+// api/songs/most-voted-song-of-day => devuelve la ruta mas votada de la semana
 router.get("/most-voted-song-of-week", async (req, res) => {
   try {
     // Calculate the start and end timestamps for the current week
@@ -214,6 +240,5 @@ router.get("/most-voted-song-of-week", async (req, res) => {
     res.status(500).json({ error: "Error del servidor." });
   }
 });
-
 
 module.exports = router;
